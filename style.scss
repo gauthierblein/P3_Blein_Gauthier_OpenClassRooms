@@ -11,12 +11,112 @@
     src: url(assets/fonts/Shrikhand-Regular.ttf);
   }
 
-
-
-/* REGLES */
+/* VARIABLES */
 $color1 : #9356DC;
 $color2 : #FF79DA;
 $color3 : #99E2D0;
+
+
+/* ANIMATIONS */
+@keyframes loading
+{
+	0%
+	{
+		opacity:1;
+        z-index: 5;
+	}
+    40%
+	{
+		opacity:0.95;
+        z-index: 5;
+	}
+    60%
+	{
+		opacity:.90;
+        z-index: 5;
+	}
+	90%
+	{
+		opacity:.8;
+        z-index: 5;
+	}
+    95%
+	{
+		opacity:.5;
+        z-index: 5;
+	}
+	100%
+	{
+		opacity:0;
+        display: none;
+        z-index: -50;
+	}
+}
+
+@keyframes rotation_spinner
+{
+	0%
+	{
+		opacity:1;
+		transform:rotate(0turn);
+	}
+	50%
+	{
+		transform:rotate(2turn);
+	}
+	90%
+	{
+		transform:rotate(3turn);
+        opacity:.9;
+	}
+	100%
+	{
+		opacity:.3;
+		transform:rotate(4turn);
+	}
+}
+
+@keyframes gradual_appearance
+{
+	0%
+	{
+		opacity:0;
+        transform:translateY(40px);
+	}
+    80%
+	{
+		opacity:0.9;
+	}
+    90%
+	{
+		opacity:0.95;
+	}
+	100%
+	{
+		opacity:1;
+        transform:translateY(0px);
+	}
+}
+
+@keyframes select_meal
+{
+	0%
+	{
+		opacity:0;
+        transform: translateX(100px);
+	}
+    10%
+	{
+		opacity:1;
+        transform: translateX(70px);
+	}
+    100%
+	{
+		opacity:1;
+        transform: translateX(0px);
+	}
+}
+
 
 @mixin boxshadow {
     box-shadow: 3px 3px 3px rgb(211, 210, 210);
@@ -26,7 +126,30 @@ $color3 : #99E2D0;
     border-radius: 10px;
 }
 
-@mixin display_menus {
+@mixin step {
+    background-color: #f6f6f6;
+    display: flex;
+    width: 92%;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    padding: 30px 0 30px 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+@mixin step_number {
+    background-color: $color1;
+    display: flex;
+    justify-content: center; align-items: center;
+    height: 25px; width: 25px;
+    border-radius: 25px;
+    color: white;
+    font-size: 14px;
+    font-weight: 100;
+    margin-right: 25px;
+}
+
+@mixin display_submenu {
     display: flex;
     flex-direction: column;
     margin-bottom: 25px;
@@ -61,7 +184,7 @@ $color3 : #99E2D0;
 }
 @mixin meals-title {
     display: flex;
-    width: 75%;
+    width: 90%;
     margin-bottom: 5px;
     justify-content: baseline;
 }
@@ -80,7 +203,40 @@ $color3 : #99E2D0;
     font-weight: 550;
     color: white;
     border-radius: 30px;
+    transition: opacity 0.25s ease-in-out;
 }
+@mixin button_hover {
+    opacity: 0.8;
+    box-shadow: 5px 5px 5px rgb(73, 73, 73);
+}
+
+/* LOADING PAGE */
+.loadingpage {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0; top: 0;
+    background-color: white;
+    z-index: 5;
+    animation: loading 2.5s;
+	animation-fill-mode: forwards;
+    display: flex;
+    justify-content: center; align-items: center;
+    &__logo {
+        height: 100px;
+        margin-right: 25px;
+    }
+    &__spinner {
+        display: flex;
+		font-size:50px;
+        color: darkcyan;
+        animation: rotation_spinner 2.5s;
+    }
+
+}
+
+
+
 
 /* BLOCS & ELEMENTS */
 
@@ -103,24 +259,31 @@ body {
         color: black;
         padding-bottom: 10px;
         padding-left: 10px;
+        @media screen and (min-width: 768px) {
+            justify-content: center;
+            padding-bottom: 5px;
+        }
     }
     &__icon {
         padding: 5px 65px 0 15px; 
         color: black;
         font-size: 20px;
+        &:hover {
+            color: $color1;
+            font-size: 24px;
+        }
     }
     &__logo {
         width: 200px;
         padding-top: 10px;
-        @media screen and (min-width: 768px) {
-            width: 20%;
-        }
+        @media screen and (min-width: 768px) {width: 20%;}
     }
     &__img {
         width: 100%;
         height : 300px;
         object-fit: cover;
         z-index: -1;
+        @media screen and (min-width: 768px) {height: 200px;}
     }
 }
       
@@ -142,7 +305,7 @@ body {
     align-items: center;
     text-align: center;
     margin-bottom: 30px;
-    @media screen and (min-width: 768px) {margin-bottom: 0;}
+    @media screen and (min-width: 768px) {margin-bottom: 10px;}
     &__head {
         width: 70%;
         font-size: 26px; font-weight: bold;
@@ -154,6 +317,10 @@ body {
         color: #383636;
         font-size: 18px;
         margin-bottom: 30px;
+        @media screen and (min-width: 768px) {
+            font-size: 16px;
+            margin-bottom:10px;
+        }
     }
 }
 
@@ -165,39 +332,31 @@ body {
         width: 80%;
         padding: 0;
         margin-left: auto; margin-right: auto;
+        margin-bottom: 0;
     }
 }
 
 ol.functioning__steps {
     padding-left: 10px;
+    @media screen and (min-width: 768px) {margin: 0; display: flex; }
 }
 
 ol li {
-    background-color: #f6f6f6;
-    display: flex;
-    width: 92%;
-    border-radius: 20px;
-    margin-bottom: 20px;
-    padding: 30px 0 30px 0;
-    font-size: 18px;
-    font-weight: bold;
+    @include step;
     @include boxshadow;
+    &:hover {@include button_hover}
+    @media screen and (min-width: 768px) {
+        padding: 15px 0 15px 0;
+        width: 32%;
+        margin-right: 30px;
+        font-size: 16px;
+    }
 }
 .step{
     display: flex;
     align-items: center;
     margin-left: -10px;
-    &__number {
-    background-color: $color1;
-    display: flex;
-    justify-content: center; align-items: center;
-    height: 25px; width: 25px;
-    border-radius: 25px;
-    color: white;
-    font-size: 14px;
-    font-weight: 100;
-    margin-right: 25px;
-    }
+    &__number {@include step_number;}
     &__icon {color: grey}
     &__text1 {margin-left: 30px;}
     &__text2 {margin-left: 25px;}
@@ -209,10 +368,20 @@ ol li {
     background-color: #f6f6f6;
     display: flex; flex-direction: column;
     padding-left: 20px; padding-top: 20px;
+    @media screen and (min-width: 768px) {
+        width: 82%;
+        margin-left: auto; margin-right: auto;
+        padding-top: 10px;
+    }
     &__list {
     display: flex; flex-direction: column;  
     width: 100%; 
     margin-bottom: 50px;
+    @media screen and (min-width: 768px) {
+        flex-direction: row; flex-wrap: wrap;
+        justify-content: space-around;
+        margin-bottom: 10px;
+    }
     }
 }
 .adress {
@@ -223,6 +392,10 @@ ol li {
     border-radius: 10px;
     @include boxshadow;
     @include borderradius;
+    transform: scale(1);
+    transition: transform 0.3s ease-in-out;
+        &:hover {transform: scale(1.02);}
+    @media screen and (min-width: 768px) {width: 45%;}
     &__link {
     display: flex; flex-direction: column;   
     text-decoration: none;
@@ -231,13 +404,15 @@ ol li {
     &__box-img {
         height: 200px;
         display: flex;
+        @media screen and (min-width: 768px) {height: 170px;}
     }
     &__img {
         height: 200px;
         width: 100%;
         object-fit: cover;
         position: relative;
-        @include borderradius;      
+        @include borderradius;   
+        @media screen and (min-width: 768px) {height: 170px;}   
     }
     &__new {
         background-color: $color3;
@@ -245,11 +420,12 @@ ol li {
         padding: 10px;
         position: absolute;
         margin: 5% 0 0 65%;
-        z-index: 5;
+        z-index: 4;
         color: darken($color: $color3, $amount: 40);
         font-weight: bold;
         border-radius: 2px;
         letter-spacing: 1px;
+        @media screen and (min-width: 768px) {margin: 2% 0 0 78%;}
     }
     &__details {
         display: flex; justify-content: space-between;  
@@ -257,6 +433,7 @@ ol li {
         padding: 15px;
         font-size: 12px;
         line-height: 1.5;
+        @media screen and (min-width: 768px) {padding: 8px;}
     }
     &__text {
         display: flex; flex-direction: column;  
@@ -271,6 +448,11 @@ ol li {
     margin-top: -50px;
     position: relative;
     z-index: 3;
+    @media screen and (min-width: 768px) {
+        width: 90%;
+        margin-left: auto; margin-right: auto;
+        margin-top: -60px;
+    }
 }
 .menu__head {
     display: flex;
@@ -278,28 +460,66 @@ ol li {
     padding: 20px 25px 0 20px ;
     font-size: 12px;
     margin-bottom: 10px;
+    @media screen and (min-width: 768px) {padding: 5px 25px 0 20px}
 }
 
 
 .submenu {
-    @include display_menus;
+    @include display_submenu;
+    @media screen and (min-width: 768px) {margin-bottom: 6px;}
     &__head {
         @include meals_head;
+        @media screen and (min-width: 768px) {margin-bottom: 6px;}
     }
     &__list {
         @include display_meals_list;
+        @media screen and (min-width: 768px) {
+            flex-direction: row;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            width: 98%;
+        }
     }
 }
 
 .meal {
     @include display_meals;
+    @media screen and (min-width: 768px) {
+        width: 32%;
+        padding: 8px;
+    }
     &__title {
         @include meals-title;
+        @media screen and (min-width: 768px) {
+            width: auto;
+            margin-bottom: 2px;
+        }
     }
     &__details {
         @include meals-details;
     }
+    &__select {
+        background-color: $color3;
+        display: flex;
+        justify-content: center; align-items: center;
+        width: 80px; height: 62px;
+        color: white;
+        font-size: 22px;
+        position: absolute; left: 260px;
+        z-index: 4;
+        border-radius: 0 10px 10px 0;
+        margin-bottom: 14px;
+        opacity: 0;
+        &:hover {
+            animation: select_meal 0.8s forwards;
+        }
+    }
 }
+
+.n1 {animation: gradual_appearance 0.5s 0.2s both;}
+.n2 {animation: gradual_appearance 0.5s 0.3s both;}
+.n3 {animation: gradual_appearance 0.5s 0.4s both;}
+.n4 {animation: gradual_appearance 0.5s 0.5s both;}
 
 
 
@@ -307,29 +527,38 @@ ol li {
     display: flex;
     justify-content: center;
     margin-bottom: 70px;
+    @media screen and (min-width: 768px) {margin-top: 0; margin-bottom:20px;}
 }
 
 .btn-primary {
     @include button;
     @include boxshadow;
     padding: 15px 25px 15px 25px;
+    &:hover {@include button_hover}
 }
 
 .btn-secondary {
     @include button;
     @include boxshadow;
     padding: 15px 50px 15px 50px;
+    &:hover {@include button_hover}
 }
 
 h1 {
     font-weight: 900;
     font-size: 26px;
+    @media screen and (min-width: 768px) {margin-top: 5px; margin-bottom: 10px;}
 }
 
 h2 {
     font-family: "Shrikhand";
     font-size: 28px;
     margin-top: 10px;
+    @media screen and (min-width: 768px) {
+        font-size: 24px;
+        margin-bottom: 0px;
+    
+    }
 }
 
 h3, h5, p{
@@ -338,7 +567,11 @@ h3, h5, p{
 
 h3 {
     font-size: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
+
 h5 {
     font-size: 14px;
     font-style: normal;
@@ -346,6 +579,9 @@ h5 {
 p {
     color: #383636;
     font-size: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .footer {
@@ -353,31 +589,40 @@ p {
     background-color: #383636;
     padding: 25px 0px 40px 30px;
     color: white;
+    @media screen and (min-width: 768px) {padding: 10px 0px 8px 30px;}
     &__logo {
     font-size: 20px;
     font-family: "Shrikhand";
     margin-top: 0; margin-bottom: 10px;
+    @media screen and (min-width: 768px) {
+        width: 90%;
+        margin-left: auto; margin-right: auto;
+        margin-bottom: 0;
+        }
     }
     &__list {
         line-height: 1.65;
+        @media screen and (min-width: 768px) {
+            display: flex;
+            width: 90%;
+            margin-left: auto; margin-right: auto;
+            margin-top: 4px;
+        }
     }
+    &__icon1 {margin-right: 10px;}
+    &__icon2 {margin-right: 8px;font-size: 13px;}
 }
 
 ul {
     list-style-type: none;
     padding-left: 0;
+    
 }
 
 ul a {
     text-decoration: none;
     color: white;
     font-size: 17px;
-}
-.footer__icon1 {
-    margin-right: 10px;
+    @media screen and (min-width: 768px) {margin-right: 75px;}
 }
 
-.footer__icon2 {
-    margin-right: 8px;
-    font-size: 13px;
-}
