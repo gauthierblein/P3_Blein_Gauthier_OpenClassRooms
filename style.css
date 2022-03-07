@@ -117,8 +117,8 @@
 @-webkit-keyframes gradual_appearance {
   0% {
     opacity: 0;
-    -webkit-transform: translateY(40px);
-            transform: translateY(40px);
+    -webkit-transform: translateY(50%);
+            transform: translateY(50%);
   }
   80% {
     opacity: 0.9;
@@ -136,8 +136,8 @@
 @keyframes gradual_appearance {
   0% {
     opacity: 0;
-    -webkit-transform: translateY(40px);
-            transform: translateY(40px);
+    -webkit-transform: translateY(50%);
+            transform: translateY(50%);
   }
   80% {
     opacity: 0.9;
@@ -152,39 +152,75 @@
   }
 }
 
-@-webkit-keyframes select_meal {
+@-webkit-keyframes heart_select {
   0% {
     opacity: 0;
-    -webkit-transform: translateX(100px);
-            transform: translateX(100px);
+    -webkit-transform: scale(1);
+            transform: scale(1);
   }
   10% {
     opacity: 1;
-    -webkit-transform: translateX(70px);
-            transform: translateX(70px);
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
   }
   100% {
     opacity: 1;
-    -webkit-transform: translateX(0px);
-            transform: translateX(0px);
+    -webkit-transform: scale(1.9);
+            transform: scale(1.9);
+  }
+}
+
+@keyframes heart_select {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  10% {
+    opacity: 1;
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1.9);
+            transform: scale(1.9);
+  }
+}
+
+@-webkit-keyframes select_meal {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(30%);
+            transform: translateX(30%);
+  }
+  10% {
+    opacity: 1;
+    -webkit-transform: translateX(25%);
+            transform: translateX(25%);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
   }
 }
 
 @keyframes select_meal {
   0% {
     opacity: 0;
-    -webkit-transform: translateX(100px);
-            transform: translateX(100px);
+    -webkit-transform: translateX(30%);
+            transform: translateX(30%);
   }
   10% {
     opacity: 1;
-    -webkit-transform: translateX(70px);
-            transform: translateX(70px);
+    -webkit-transform: translateX(25%);
+            transform: translateX(25%);
   }
   100% {
     opacity: 1;
-    -webkit-transform: translateX(0px);
-            transform: translateX(0px);
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
   }
 }
 
@@ -652,6 +688,33 @@ ol li:hover {
           flex-direction: column;
 }
 
+.adress__icon:active .heart1 {
+  opacity: 0;
+}
+
+.adress__icon:active .heart2 {
+  -webkit-animation: heart_select 0.6s both;
+          animation: heart_select 0.6s both;
+}
+
+.heart1 {
+  right: 1%;
+  position: absolute;
+  opacity: 5;
+  z-index: 1;
+  font-size: 30px;
+}
+
+.heart2 {
+  opacity: 0;
+  z-index: 1;
+  font-size: 15px;
+  color: #FF79DA;
+  position: relative;
+  padding-right: 2px;
+  padding-top: 4px;
+}
+
 .menu {
   background-color: #f6f6f6;
   width: 100%;
@@ -775,6 +838,7 @@ ol li:hover {
   border-radius: 10px 10px 10px 10px;
   padding: 8px 15px 8px 5px;
   margin-bottom: 15px;
+  overflow: hidden;
   -webkit-box-shadow: 3px 3px 3px #d3d2d2;
           box-shadow: 3px 3px 3px #d3d2d2;
 }
@@ -818,6 +882,13 @@ ol li:hover {
   padding-left: 0;
 }
 
+.meal__price {
+  -webkit-transition: -webkit-transform 0.5s ease-in-out;
+  transition: -webkit-transform 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out, -webkit-transform 0.5s ease-in-out;
+}
+
 .meal__select {
   background-color: #99E2D0;
   display: -webkit-box;
@@ -829,21 +900,48 @@ ol li:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 80px;
-  height: 62px;
+  width: 20%;
+  height: 100%;
   color: white;
   font-size: 22px;
   position: absolute;
-  left: 260px;
+  left: 100%;
+  bottom: 0;
   z-index: 4;
   border-radius: 0 10px 10px 0;
-  margin-bottom: 14px;
-  opacity: 0;
+  -webkit-transition: -webkit-transform 0.5s ease-in-out;
+  transition: -webkit-transform 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out, -webkit-transform 0.5s ease-in-out;
 }
 
-.meal__select:hover {
-  -webkit-animation: select_meal 0.8s forwards;
-          animation: select_meal 0.8s forwards;
+.fa-check-circle {
+  -webkit-transition: -webkit-transform 0.7s ease-in-out;
+  transition: -webkit-transform 0.7s ease-in-out;
+  transition: transform 0.7s ease-in-out;
+  transition: transform 0.7s ease-in-out, -webkit-transform 0.7s ease-in-out;
+}
+
+.meal:hover .meal__select {
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+}
+
+.meal:hover .meal__price {
+  -webkit-transform: translateX(-350%);
+          transform: translateX(-350%);
+}
+
+.meal:hover .fa-check-circle {
+  -webkit-transform: rotate(720deg);
+          transform: rotate(720deg);
+}
+
+.meal:hover .meal__description {
+  width: 230px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .n1 {
@@ -969,6 +1067,12 @@ h3 {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+@media screen and (min-width: 768px) {
+  h3 {
+    font-size: 18.5px;
+  }
 }
 
 h5 {

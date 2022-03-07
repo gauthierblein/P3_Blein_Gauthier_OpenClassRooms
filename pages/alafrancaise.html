@@ -11,7 +11,7 @@
 <body>
     <header class="header">
         <div class="header__top">
-            <a href="index.html" class="header__icon"><i class="fas fa-arrow-left"></i></a>
+            <a href="../index.html" class="header__icon"><i class="fas fa-arrow-left"></i></a>
             <img src="../assets/images/logo/ohmyfood.png" alt="logo" class="header__logo"> </div>
         <div>
             <img src="../assets/images/restaurants/toa-heftiba-DQKerTsQwi0-unsplash.jpg" alt="A_la_française" class="header__img"/>
@@ -19,8 +19,11 @@
     </header>
     <main class="menu">
         <section class= "menu__head">
-            <span><h2>À la française</h2></span>
-            <span> <i class="far fa-heart fa-2x"></i> </span>
+            <div><h2>À la française</h2></div>
+            <div class="adress__icon">
+                <i class= "heart1 far fa-heart"></i>
+                <i class= "heart2 fas fa-heart"></i>
+            </div>
         </section>
         <section class="submenu">
             <div class="submenu__head">ENTRÉES </div>
@@ -30,8 +33,9 @@
                         <h3>Tartare de poulpe acidulé</h3>
                     </div>
                     <div class="meal__details">
-                        <p>Aux zests d'Orange</p>
-                        <h5>25€</h5>
+                        <span class="meal__description"><p>Aux zests d'Orange</p></span>
+                        <span class="meal__price"><h5>25€</h5></span>
+                        <span class="meal__select"><i class="check fas fa-check-circle"></i></span>
                     </div>
                 </div>
                 <div class="meal n2">
@@ -39,8 +43,9 @@
                         <h3>Velouté de légumes d'antan</h3>
                     </div>
                     <div class="meal__details">
-                        <p>Carotte, Panais, Topinambour</p>
-                        <h5>35€</h5>
+                        <span class="meal__description"><p>Carotte, Panais, Topinambour</p></span>
+                        <span class="meal__price"><h5>35€</h5></span>
+                        <span class="meal__select"><i class="check fas fa-check-circle"></i></span>
                     </div>
                 </div>
                 <div class="meal n3">
@@ -48,8 +53,9 @@
                         <h3>Soupe à l'oignon</h3>
                     </div>
                     <div class="meal__details">
-                        <p>Revisitée</p>
-                        <h5>20€</h5>
+                        <span class="meal__description"></span><p>Revisitée</p>
+                        <span class="meal__price"><h5>20€</h5></span>
+                        <span class="meal__select"><i class="check fas fa-check-circle"></i></span>
                     </div>
                 </div>
             </div>
@@ -62,8 +68,9 @@
                         <h3>Coquilles Saint-Jacques</h3>
                     </div>
                     <div class="meal__details">
-                        <p>Accompagnées d'une purée de panais</p>
-                        <h5>40€</h5>
+                        <span class="meal__description"><p>Accompagnées d'une purée de panais</p></span>
+                        <span class="meal__price"><h5>40€</h5></span>
+                        <span class="meal__select"><i class="check fas fa-check-circle"></i></span>
                     </div>
                 </div>
                 <div class="meal n2">
@@ -71,8 +78,9 @@
                         <h3>Magret de canard</h3>
                     </div>
                     <div class="meal__details">
-                        <p>Et parmentier de pommes de terres</p>
-                        <h5>35€</h5>
+                        <span class="meal__description"><p>Et parmentier de pommes de terres</p></span>
+                        <span class="meal__price"><h5>35€</h5></span>
+                        <span class="meal__select"><i class="check fas fa-check-circle"></i></span>
                     </div>
                 </div>
                 <div class="meal n3">
@@ -80,8 +88,9 @@
                         <h3>Pigeonneau d'Ille-et-Vilaine</h3>
                     </div>
                     <div class="meal__details">
-                        <p>Sur son lit de gnocchis et de légumes</p>
-                        <h5>44€</h5>
+                        <span class="meal__description"><p>Sur son lit de gnocchis et de légumes</p></span>
+                        <span class="meal__price"><h5>44€</h5></span>
+                        <span class="meal__select"><i class="check fas fa-check-circle"></i></span>
                     </div>
                 </div>
             </div>
@@ -94,8 +103,9 @@
                     <h3>Pétales de violettes glacés</h3>
                 </div>
                     <div class="meal__details">
-                        <p>Et purée de noisettes</p>
-                        <h5>18€</h5>
+                        <span class="meal__description"><p>Et purée de noisettes</p></span>
+                        <span class="meal__price"><h5>18€</h5></span>
+                        <span class="meal__select"><i class="check fas fa-check-circle"></i></span>
                     </div>
                 </div>
                 <div class="meal n2">
@@ -103,8 +113,9 @@
                         <h3>Fondant au chocolat</h3>
                     </div>
                     <div class="meal__details">
-                        <p>Revisité</p>
-                        <h5>22€</h5>
+                        <span class="meal__description"><p>Revisité</p></span>
+                        <span class="meal__price"><h5>22€</h5></span>
+                        <span class="meal__select"><i class="check fas fa-check-circle"></i></span>
                     </div>
                 </div>
                 <div class="meal n3">
@@ -112,12 +123,13 @@
                         <h3>Millefeuille croustillant</h3>
                     </div>
                     <div class="meal__details">
-                        <p>Myrtilles et pâte d'amande</p>
-                        <h5>23€</h5>
+                        <span class="meal__description"><p>Myrtilles et pâte d'amande</p></span>
+                        <span class="meal__price"><h5>23€</h5></span>
+                        <span class="meal__select"><i class="check fas fa-check-circle"></i></span>
                     </div>
                 </div>
             </div>
-        </section>
+        </section>   
         <div class="btn-container"><button class="btn-secondary">Commander </button></div>
     </main>
     <footer class="footer">
