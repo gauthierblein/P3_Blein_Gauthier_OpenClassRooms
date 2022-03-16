@@ -69,11 +69,11 @@
     display: flex;
     width: 90%;
     margin-bottom: 5px;
-    justify-content: baseline;
+    justify-content: start;
 }
 @mixin meals-details {
     display: flex;
-    flex-direction: raw;
+    flex-direction: row;
     justify-content: space-between;
     padding-left: 0;
 }
