@@ -16,24 +16,22 @@
     display: flex;
     justify-content: center; align-items: center;
     &__logo {
-        height: 100px;
+        height: 40px;
         margin-right: 25px;
+        @media screen and (min-width: 768px) {height: 100px;}
     }
     &__spinner {
         display: flex;
-		font-size:50px;
+		font-size:30px;
         color: darkcyan;
         animation: rotation_spinner 2.5s;
+        @media screen and (min-width: 768px) {font-size: 50px;}
     }
 
 }
 
 
-
 /* BLOCS & ELEMENTS */
-
-
-
    
 .search {
     background-color: #e0dfdf;

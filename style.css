@@ -235,18 +235,30 @@
 }
 
 .loadingpage__logo {
-  height: 100px;
+  height: 40px;
   margin-right: 25px;
+}
+
+@media screen and (min-width: 768px) {
+  .loadingpage__logo {
+    height: 100px;
+  }
 }
 
 .loadingpage__spinner {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  font-size: 50px;
+  font-size: 30px;
   color: darkcyan;
   -webkit-animation: rotation_spinner 2.5s;
           animation: rotation_spinner 2.5s;
+}
+
+@media screen and (min-width: 768px) {
+  .loadingpage__spinner {
+    font-size: 50px;
+  }
 }
 
 /* BLOCS & ELEMENTS */
@@ -723,6 +735,21 @@ ol li:hover {
   }
 }
 
+.heart1 {
+  position: absolute;
+  opacity: 1;
+  font-size: 30px;
+}
+
+.heart2 {
+  position: absolute;
+  margin-top: 5px;
+  margin-left: 7px;
+  opacity: 0;
+  font-size: 15px;
+  color: #FF79DA;
+}
+
 .hearts__icon {
   width: 30px;
   height: 30px;
@@ -914,6 +941,13 @@ ol li:hover {
   padding-left: 0;
 }
 
+.meal__description {
+  width: 85%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .meal__price {
   -webkit-transition: -webkit-transform 0.5s ease-in-out;
   transition: -webkit-transform 0.5s ease-in-out;
@@ -970,10 +1004,7 @@ ol li:hover {
 }
 
 .meal:hover .meal__description {
-  width: 230px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  width: 70%;
 }
 
 .n1 {
